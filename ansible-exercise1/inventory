@@ -1,0 +1,6 @@
+all:
+  hosts:
+    Web01:
+      ansible_host: 172.31.17.155 
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: clientkey.pem

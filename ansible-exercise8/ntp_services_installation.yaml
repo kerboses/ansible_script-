@@ -1,0 +1,32 @@
+---
+- name: Installation of NTP services on server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install NTP agent on Ubuntu
+      ansible.builtin.apt:
+        update_cache: yes
+        name: ntp
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install chrony on Amazon Linux
+      ansible.builtin.yum:
+        name: chrony
+        state: present
+      when: ansible_distribution == "Amazon"
+
+    - name: Start NTP service on Ubuntu
+      ansible.builtin.service:
+        name: ntp
+        state: started
+        enabled: yes
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Start chrony service on Amazon Linux
+      ansible.builtin.service:
+        name: chronyd
+        state: started
+        enabled: yes
+      when: ansible_distribution == "Amazon"
+

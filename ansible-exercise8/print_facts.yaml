@@ -1,0 +1,14 @@
+---
+- name: print facts
+  hosts: all
+  tasks:
+    - name: print IP address
+      debug:
+        var: ansible_all_ipv4_addresses
+    - name: print OS name
+      debug:
+        var: ansible_distribution 
+    - name: Print RAM memory
+      debug:
+        var: ansible_memory_mb.real.free
+

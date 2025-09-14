@@ -1,0 +1,31 @@
+#ansible yaml format 
+
+all:
+  hosts:
+    Web01:
+      ansible_host: 172.31.17.155 
+    Web02:
+      ansible_host: 172.31.25.25
+    Web03:
+      ansible_host: 172.31.20.187
+      ansible_user: ec2-user
+    db01:
+      ansible_host: 172.31.28.226
+     
+#group 
+  children:
+    webservers:
+      Web01:
+      Web02:
+    database_servers:
+      db01:
+
+    dc_origin:
+      webservers:
+      database_servers:
+
+#var
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: clientkey.pem
+
